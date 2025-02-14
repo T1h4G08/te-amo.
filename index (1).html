@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa Fotos San Valentin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff69b4, #ff8da1);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition"></div>
+    <div id="encabezado-container">
+        <div id="brillo">¡Feliz Día de San Valentín! 💞</div>
+    </div>
+    
+    <div class="galeria">
+        <img src="fotakas (1).jpg" alt="Foto 1" onload="checkImagesLoaded()">
+        <img src="fotakas (2).jpg" alt="Foto 2" onload="checkImagesLoaded()">
+        <img src="fotakas (3).jpg" alt="Foto 3" onload="checkImagesLoaded()">
+        <img src="fotakas (4).jpg" alt="Foto 4" onload="checkImagesLoaded()">
+        <img src="fotakas (5).jpg" alt="Foto 5" onload="checkImagesLoaded()">
+        <img src="fotakas (6).jpg" alt="Foto 6" onload="checkImagesLoaded()">
+        <img src="fotakas (7).jpg" alt="Foto 7" onload="checkImagesLoaded()">
+        <img src="fotakas (8).jpg" alt="Foto 8" onload="checkImagesLoaded()">
+        <img src="fotakas (9).jpg" alt="Foto 9" onload="checkImagesLoaded()">
+        <img src="fotakas (10).jpg" alt="Foto 10" onload="checkImagesLoaded()">
+        <img src="fotakas (11).jpg" alt="Foto 11" onload="checkImagesLoaded()">
+        <img src="fotakas (12).jpg" alt="Foto 12" onload="checkImagesLoaded()">
+        <img src="fotakas (13).jpg" alt="Foto 13" onload="checkImagesLoaded()">
+        <img src="fotakas (14).jpg" alt="Foto 14" onload="checkImagesLoaded()">
+        <img src="fotakas (15).jpg" alt="Foto 15" onload="checkImagesLoaded()">
+        <img src="fotakas (17).jpg" alt="Foto 17" onload="checkImagesLoaded()">
+    </div>
+
+    <script>
+        let imagesLoaded = 0;
+        const totalImages = 16; // Total de imágenes en la galería
+        const transitionDelay = 10000; // 10 segundos después de que se muestren todas las fotos
+
+        function checkImagesLoaded() {
+            imagesLoaded++;
+            
+            // Cuando todas las imágenes estén cargadas, iniciamos el temporizador
+            if (imagesLoaded === totalImages) {
+                console.log("Todas las imágenes cargadas");
+                setTimeout(transitionToNextPage, transitionDelay);
+            }
+        }
+
+        function transitionToNextPage() {
+            const transition = document.querySelector('.page-transition');
+            transition.style.transform = 'translateX(0)';
+            
+            setTimeout(() => {
+                window.location.href = 'index (2).html';
+            }, 500);
+        }
+
+        // Verificar si las imágenes ya están en caché
+        window.onload = function() {
+            const images = document.querySelectorAll('.galeria img');
+            images.forEach(img => {
+                if (img.complete) {
+                    checkImagesLoaded();
+                }
+            });
+        };
+
+        // Manejar errores de carga de imágenes
+        document.querySelectorAll('.galeria img').forEach(img => {
+            img.onerror = function() {
+                checkImagesLoaded(); // Contar incluso las imágenes que no se pudieron cargar
+                console.log('Error al cargar imagen:', img.src);
+            };
+        });
+    </script>
+</body>
+</html>
